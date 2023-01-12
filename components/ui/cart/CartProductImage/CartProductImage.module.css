@@ -1,0 +1,3 @@
+.cart__productImage {
+    @apply aspect-square rounded-lg overflow-hidden
+}

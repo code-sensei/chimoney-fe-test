@@ -1,0 +1,31 @@
+.cart__productDescription {
+    @apply grid grid-cols-4 h-full justify-center items-center gap-3;
+}
+
+.cart__productTitle {
+    @apply col-span-2 h-full flex flex-col justify-center items-start
+}
+
+.cart__productName {
+    @apply font-bold
+}
+
+.cart__productID {
+    @apply font-light font-800
+}
+
+.cart__action {
+    @apply col-span-1 h-full flex flex-col justify-center items-start
+}
+
+.cart__productQty {
+    @apply flex flex-row gap-4 justify-center items-center
+}
+
+.cart__productQtyValue {
+    @apply bg-transparent border-2 rounded-lg font-bold h-12 w-12 m-0 p-1 text-center 
+}
+
+.cart__productPrice {
+    @apply font-bold text-xl
+}
