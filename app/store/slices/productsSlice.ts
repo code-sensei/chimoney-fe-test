@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 export interface Product {
     available: boolean
@@ -33,9 +33,11 @@ export const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-
+        initiateProducts: (state, action: PayloadAction<Product[]>) => {
+            return action.payload;
+        }
     }
 })
 
-export const {} = productsSlice.actions;
+export const { initiateProducts } = productsSlice.actions;
 export default productsSlice.reducer;
