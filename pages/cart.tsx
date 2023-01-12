@@ -1,7 +1,25 @@
 import Image from "next/image";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { CartState, setCart } from "../app/store/slices/cartSlice";
+import { RootState } from "../app/store/store";
 import { CartItem } from "../components/ui";
 
 function Cart() {
+    const products = useSelector((state: RootState) => state.products);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        initCartItems()
+    }, [])
+
+    const initCartItems = () => {
+        let cartItems: CartState[] = products.slice(0,3).map((item) => ({
+            id: item.id,
+            quantity: 1
+        }))
+        dispatch(setCart(cartItems))
+    }
     return (
         <>
             <div className="grid grid-cols-3 gap-4 justify-start items-start h-screen">

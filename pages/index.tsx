@@ -6,12 +6,13 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { initiateProducts } from '../app/store/slices/productsSlice'
 import { RootState } from '../app/store/store'
+import { useRouter } from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const products = useSelector((state: RootState) => state.products.values());
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     getProductsFromAPI();
@@ -38,6 +39,7 @@ export default function Home() {
         let products = response.data.benefitsList.filter((item: any) => item.type === "Products");
         console.log('Products', products);
         dispatch(initiateProducts(products));
+        router.push('/cart');
       })
       .catch(err => console.error(err));
   }
