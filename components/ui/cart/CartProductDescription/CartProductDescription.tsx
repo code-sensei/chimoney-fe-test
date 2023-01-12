@@ -1,28 +1,68 @@
+import { useState, useRef } from "react";
 import { MinusIcon, PlusIcon } from "../../../icons";
 import styles from "./CartProductDescription.module.css"
 
-function CartProductDescription() {
+function CartProductDescription({...props}) {
+
+    const {
+        product,
+        onQtyChanged
+    } = props;
+
+    const [ quantity, setQuantity ] = useState<number>(product.quantity);
+    const quantityInput = useRef<any>();
+
+    const handleQtyChange = (event: any) => {
+        if (onQtyChanged) {
+            // console.log('Ev', event);
+            event.preventDefault();
+            onQtyChanged({
+                quantity: Number(quantityInput.current.value),
+                id: product.id
+            });
+        } else {
+            console.log('Rubbish');
+        }
+    }
+
     return (
         <>
             <div className={styles.cart__productDescription}>
                 <div className={styles.cart__productTitle}>
-                    <p className={styles.cart__productName}>Product 1</p>
-                    <small className={styles.cart_productID}>#124254</small>
+                    <p className={styles.cart__productName}>{ product.name }</p>
+                    <small className={styles.cart_productID}>#{ product.id }</small>
                 </div>
                 <div className={styles.cart__action}>
                     <div className={styles.cart__productQty}>
-                        <MinusIcon className="hover:cursor-pointer" />
+                        <MinusIcon 
+                            className="hover:cursor-pointer"
+                            onClick={async (event: any) => {
+                                if (quantity > 0) {
+                                    await setQuantity(quantity - 1);
+                                    handleQtyChange(event);
+                                }
+                            }}
+                        />
                         <input 
                             className={styles.cart__productQtyValue} 
                             type={'number'}
-                            value={1}
+                            value={quantity}
+                            ref={quantityInput}
                             readOnly
                         />
-                        <PlusIcon className="hover:cursor-pointer" />
+                        <PlusIcon
+                            className="hover:cursor-pointer"
+                            onClick={async (event: any) => {
+                                if (quantity < 99) {
+                                    await setQuantity(quantity + 1);
+                                    handleQtyChange(event);
+                                }
+                            }}
+                        />
                     </div>
                 </div>
-                <div className={styles.cart__action}>
-                    <p className={styles.cart__productPrice}>$4,000</p>
+                <div className={styles.cart__price}>
+                    <p className={styles.cart__productPrice}>{ product.currency } { (product.price * quantity).toFixed(2) }</p>
                 </div>
             </div>
         </>

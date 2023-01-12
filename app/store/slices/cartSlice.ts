@@ -1,4 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { useSelector } from "react-redux"
+import { RootState } from "../store"
+import { Product } from "./productsSlice"
 
 export interface CartState {
     id: number,
@@ -18,9 +21,21 @@ export const cartSlice = createSlice({
     reducers: {
         setCart: (state, action: PayloadAction<CartState[]>) => {
             return action.payload
+        },
+        getCartItems: (state) => {
+            state
+        },
+        updateItemQuantity: (state, action: PayloadAction<{quantity: number, id: number, index: number}>) => {
+            let currentItems = state;
+            let productToUpdate = currentItems.filter((item) => item.id === action.payload.id)[0];
+            currentItems[action.payload.index] = {
+                ...productToUpdate,
+                quantity: action.payload.quantity
+            }
+            return currentItems
         }
     }
 })
 
-export const { setCart } = cartSlice.actions;
+export const { setCart, updateItemQuantity } = cartSlice.actions;
 export default cartSlice.reducer;

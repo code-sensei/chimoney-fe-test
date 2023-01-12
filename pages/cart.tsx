@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CartState, setCart } from "../app/store/slices/cartSlice";
 import { RootState } from "../app/store/store";
@@ -7,10 +7,13 @@ import { CartItem } from "../components/ui";
 
 function Cart() {
     const products = useSelector((state: RootState) => state.products);
+    const cart = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
+    const [ cartItems, setCartItems ] = useState<any[]>([]);
 
     useEffect(() => {
-        initCartItems()
+        initCartItems();
+        getCartItems();
     }, [])
 
     const initCartItems = () => {
@@ -20,6 +23,20 @@ function Cart() {
         }))
         dispatch(setCart(cartItems))
     }
+
+    const getCartItems = () => {
+        let cartItems = products.map((product) => {
+            let cartItemIDs = cart.map((item) => item.id);
+            if (cartItemIDs.indexOf(product.id) !== -1) {
+                return {
+                    ...product, 
+                    quantity: cart[cartItemIDs.indexOf(product.id)].quantity
+                };
+            }
+        });
+        console.log('Cart Items', cartItems.filter((item) => !!item));
+        setCartItems(cartItems.filter((item) => !!item));
+    }
     return (
         <>
             <div className="grid grid-cols-3 gap-4 justify-start items-start h-screen">
@@ -28,11 +45,14 @@ function Cart() {
                         Shopping Cart
                     </h1>
                     <div className="mt-16 max-h-[70%] overflow-y-auto">
-                        { [1,1,1,1,1].map(() => {
+                        { cartItems.map((item, index) => {
                             return (
-                                <>
-                                    <CartItem />
-                                </>
+                                <div key={`cartItem-${item.id}`}>
+                                    <CartItem 
+                                        item={item} 
+                                        index={index} 
+                                    />
+                                </div>
                             )
                         })}
                     </div>
@@ -86,9 +106,7 @@ function Cart() {
                                             <option value="MM" selected>MM</option>
                                             {[1,2,3,4,5,6,7,8,9,10,11,12].map((value, index) => {
                                                 return (
-                                                    <>
-                                                        <option value={index + 1}>{ value }</option>
-                                                    </>
+                                                    <option key={`month-${value}`} value={index + 1}>{ value }</option>
                                                 )
                                             })}
                                         </select>
@@ -104,9 +122,7 @@ function Cart() {
                                             <option value="YYYY" selected>YYYY</option>
                                             {[2023,2024,2025].map((value, index) => {
                                                 return (
-                                                    <>
-                                                        <option value={index + 1}>{ value }</option>
-                                                    </>
+                                                    <option key={`year-${value}`} value={index + 1}>{ value }</option>
                                                 )
                                             })}
                                         </select>

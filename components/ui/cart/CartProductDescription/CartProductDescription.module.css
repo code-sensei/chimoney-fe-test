@@ -1,5 +1,5 @@
 .cart__productDescription {
-    @apply grid grid-cols-4 h-full justify-center items-center gap-3;
+    @apply grid grid-cols-5 h-full justify-center items-center gap-3;
 }
 
 .cart__productTitle {
@@ -16,6 +16,10 @@
 
 .cart__action {
     @apply col-span-1 h-full flex flex-col justify-center items-start
+}
+
+.cart__price {
+    @apply col-span-2 h-full flex flex-col justify-center items-end pr-12
 }
 
 .cart__productQty {

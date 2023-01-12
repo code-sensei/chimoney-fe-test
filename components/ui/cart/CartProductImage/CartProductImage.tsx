@@ -1,11 +1,15 @@
 import styles from "./CartProductImage.module.css"
 
-function CartProductImage() {
+function CartProductImage({...props}) {
+
+    const {
+        url = 'https://picsum.photos/200'
+    } = props
     return (
         <>
             <div className={styles.cart__productImage}>
                 <img 
-                    src={'https://picsum.photos/200'}
+                    src={url}
                     alt={'Product Image'}
                     width={150}
                     height={150}
