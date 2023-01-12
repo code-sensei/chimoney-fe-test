@@ -7,7 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary': '#f87171'
+        'primary': '#118ab2',
+        'success': '#06d6a0',
+        'danger': '#ef476f',
+        'warning': '#ffd166',
+        'dark': '#073b4c',
       },
       fontFamily: {
         "main": ['Space Mono', 'monospace']

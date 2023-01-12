@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { updateItemQuantity } from "../../../../app/store/slices/cartSlice";
+import { successToast } from "../../../../app/toast/toast";
 import { CloseIcon } from "../../../icons";
 import CartProductDescription from "../CartProductDescription/CartProductDescription";
 import CartProductImage from "../CartProductImage/CartProductImage";
@@ -27,12 +28,13 @@ function CartItem({...props}) {
                 <div className={styles.cart__productDescription}>
                     <CartProductDescription
                         product={item}
-                        onQtyChanged={(data: {quantity: number, id: number}) => {
+                        onQtyChanged={async (data: {quantity: number, id: number}) => {
                             console.log('New Qty', data);
-                            dispatch(updateItemQuantity({
+                            await dispatch(updateItemQuantity({
                                 ...data,
                                 index
                             }))
+                            successToast(`${item.name} quantity updated`);
                         }}
                     />
                 </div>

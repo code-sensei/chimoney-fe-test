@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { initiateProducts } from '../app/store/slices/productsSlice'
 import { RootState } from '../app/store/store'
 import { useRouter } from 'next/router'
+import { CartState, setCart } from '../app/store/slices/cartSlice'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +18,14 @@ export default function Home() {
   useEffect(() => {
     getProductsFromAPI();
   }, [])
+
+  const initCartItems = (products: any) => {
+      let cartItems: CartState[] = products.slice(0,3).map((item: any) => ({
+          id: item.id,
+          quantity: 1
+      }))
+      dispatch(setCart(cartItems))
+  }
 
   const getProductsFromAPI = () => {
     const headers = new Headers();
@@ -39,6 +48,7 @@ export default function Home() {
         let products = response.data.benefitsList.filter((item: any) => item.type === "Products");
         console.log('Products', products);
         dispatch(initiateProducts(products));
+        initCartItems(products);
         router.push('/cart');
       })
       .catch(err => console.error(err));

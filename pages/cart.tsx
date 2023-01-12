@@ -12,7 +12,7 @@ function Cart() {
     const [ cartItems, setCartItems ] = useState<any[]>([]);
 
     useEffect(() => {
-        initCartItems();
+        // initCartItems();
         getCartItems();
     }, [])
 
@@ -24,8 +24,8 @@ function Cart() {
         dispatch(setCart(cartItems))
     }
 
-    const getCartItems = () => {
-        let cartItems = products.map((product) => {
+    const getCartItems = async () => {
+        let cartItems = await products.map((product) => {
             let cartItemIDs = cart.map((item) => item.id);
             if (cartItemIDs.indexOf(product.id) !== -1) {
                 return {
@@ -34,7 +34,7 @@ function Cart() {
                 };
             }
         });
-        console.log('Cart Items', cartItems.filter((item) => !!item));
+        // console.log('Cart Items', cartItems.filter((item) => !!item));
         setCartItems(cartItems.filter((item) => !!item));
     }
     return (
@@ -101,9 +101,10 @@ function Cart() {
                                         <label htmlFor="valid-date">Valid Date</label>
                                         <select 
                                             id="valid-date"
+                                            defaultValue={'MM'}
                                             className="bg-transparent border-2 w-full border-primary rounded-lg px-4 py-2 min-h-12"
                                         >
-                                            <option value="MM" selected>MM</option>
+                                            <option value="MM">MM</option>
                                             {[1,2,3,4,5,6,7,8,9,10,11,12].map((value, index) => {
                                                 return (
                                                     <option key={`month-${value}`} value={index + 1}>{ value }</option>
@@ -117,9 +118,10 @@ function Cart() {
                                         <label htmlFor="valid-year" className="text-white">Valid Year</label>
                                         <select 
                                             id="valid-year"
+                                            defaultValue={'YYYY'}
                                             className="bg-transparent border-2 w-full border-primary rounded-lg px-4 py-2 min-h-12"
                                         >
-                                            <option value="YYYY" selected>YYYY</option>
+                                            <option value="YYYY">YYYY</option>
                                             {[2023,2024,2025].map((value, index) => {
                                                 return (
                                                     <option key={`year-${value}`} value={index + 1}>{ value }</option>
