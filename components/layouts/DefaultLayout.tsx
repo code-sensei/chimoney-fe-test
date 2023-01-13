@@ -10,6 +10,7 @@ const Layout = ({ children }: any) => (
       stiffness: 260,
       damping: 20
     }}
+    className="max-w-screen-2xl mx-auto"
   >
     {children}
   </motion.div>

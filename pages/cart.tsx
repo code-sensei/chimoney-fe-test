@@ -87,10 +87,10 @@ const Cart = () => {
                                 </button>
                             </div>
                             <div className={styles.cart__subTotalSectionDivider2}></div>
-                            <div className="col-span-1">
-                                <p className={styles.boldText}>SubTotal:</p>
-                            </div>
-                            <div className="col-span-2 text-end pr-12">
+                            <div className={styles.cart__subTotal}>
+                                <p className={styles.subTotalText}>SubTotal:</p>
+                            {/* </div> */}
+                            {/* <div className="col-span-3 md:col-span-2 text-end pr-0 md:pr-12"> */}
                                 <p className={styles.boldText}>{ cartTotal } USD</p>
                             </div>
                         </div>

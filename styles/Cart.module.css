@@ -1,13 +1,17 @@
 .cart {
-    @apply grid grid-cols-3 xl:gap-4 justify-start items-start h-screen
+    @apply grid grid-cols-1 xl:gap-4 justify-start items-start h-screen
+    /* LG */
+    lg:grid-cols-3
 }
 
 .cart__itemsSection {
-    @apply col-span-2 bg-primary text-white h-full overflow-y-scroll 
+    @apply col-span-1 py-8 px-4 bg-primary text-white h-full 
     /* XL */
     xl:p-24 
     /* LG */
-    lg:p-8
+    lg:p-8 lg:col-span-2 lg:overflow-y-scroll 
+    /* MD */
+    md:p-8
 }
 
 .cartItem {
@@ -19,15 +23,19 @@
 }
 
 .cart__subTotalSectionDivider {
-    @apply col-span-1
-    /* LG */
-    lg:hidden
+    @apply col-span-1 hidden
+    /* MD */
+    md:hidden
 }
 
-.cart__subTotalSectionDivider {
-    @apply col-span-1
+.cart__subTotalSectionDivider2 {
+    @apply col-span-1 hidden
     /* XL */
     xl:hidden
+}
+
+.cart__subTotal {
+    @apply col-span-4 text-end pr-0 md:pr-12
 }
 
 .cart__continueShoppingButton {
@@ -38,13 +46,23 @@
     @apply font-bold text-white text-3xl
 }
 
+.subTotalText {
+    @apply text-xs font-light xl:text-xl lg:text-lg
+}
+
 .boldText {
     @apply font-bold xl:text-xl lg:text-lg
 }
 
 /* Card Section */
 .cardSection {
-    @apply col-span-1 h-full xl:py-24 lg:py-8 xl:px-8 lg:px-4 flex flex-col justify-start
+    @apply col-span-1 py-8 px-4 h-full flex flex-col justify-start
+    /* XL */
+    xl:py-24 xl:px-8
+    /* LG */
+    lg:py-8 lg:px-4
+    /* MD */
+    md:p-8
 }
 
 .cardSection .sectionTitle {
@@ -52,7 +70,7 @@
 }
 
 .card__formWrapper {
-    @apply w-full min-h-[70%] flex flex-col justify-center items-start
+    @apply w-full mt-16 min-h-[70%] flex flex-col justify-start items-start
 }
 
 .card__form {

@@ -1,5 +1,5 @@
 .cart__productDescription {
-    @apply grid grid-cols-5 h-full justify-center items-center gap-3;
+    @apply grid grid-cols-5 h-full justify-center items-center gap-3 pb-2;
 }
 
 .cart__productTitle {
@@ -19,7 +19,7 @@
 }
 
 .cart__price {
-    @apply col-span-2 h-full flex flex-col justify-center items-end pr-12
+    @apply col-span-2 h-full flex flex-col justify-start md:justify-center items-end pr-10 md:pr-12
 }
 
 .cart__productQty {
@@ -27,7 +27,7 @@
 }
 
 .cart__productQtyValue {
-    @apply bg-transparent border-2 rounded-lg font-bold h-12 w-12 m-0 p-1 text-center 
+    @apply bg-transparent md:border-2 rounded-lg font-bold h-[20px] max-w-[40px] md:max-w-[90px] md:h-12 md:w-12 m-0 md:p-1 text-center 
 }
 
 .cart__productPrice {
