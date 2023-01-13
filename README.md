@@ -27,11 +27,11 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Available Routes
-1. ===/=== - Loads the application and does the following
+1. `/` - Loads the application and does the following
     1. Get list of products from the Chimoney API
     2. Initializes product State with Redux
 
-2. ===/cart=== - The cart page with the following functions
+2. `/cart` - The cart page with the following functions
     1. Load cart items
     2. Update cart item quanity
     3. Remove cart item
