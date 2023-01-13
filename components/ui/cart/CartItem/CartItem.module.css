@@ -3,7 +3,7 @@
 }
 
 .cart__closeIcon {
-    @apply absolute top-[40%] right-2
+    @apply absolute h-full flex justify-center items-center right-2
 }
 
 .cart__productImage {

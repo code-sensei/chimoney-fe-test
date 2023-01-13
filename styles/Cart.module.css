@@ -1,0 +1,76 @@
+.cart {
+    @apply grid grid-cols-3 xl:gap-4 justify-start items-start h-screen
+}
+
+.cart__itemsSection {
+    @apply col-span-2 bg-primary text-white h-full overflow-y-scroll 
+    /* XL */
+    xl:p-24 
+    /* LG */
+    lg:p-8
+}
+
+.cartItem {
+    @apply mt-16 max-h-[70%] overflow-y-auto
+}
+
+.cart__subTotalSection {
+    @apply grid grid-cols-6 justify-between items-center
+}
+
+.cart__subTotalSectionDivider {
+    @apply col-span-1
+    /* LG */
+    lg:hidden
+}
+
+.cart__subTotalSectionDivider {
+    @apply col-span-1
+    /* XL */
+    xl:hidden
+}
+
+.cart__continueShoppingButton {
+    @apply font-thin bg-white text-primary lg:text-sm rounded-lg
+}
+
+.sectionTitle {
+    @apply font-bold text-white text-3xl
+}
+
+.boldText {
+    @apply font-bold xl:text-xl lg:text-lg
+}
+
+/* Card Section */
+.cardSection {
+    @apply col-span-1 h-full xl:py-24 lg:py-8 xl:px-8 lg:px-4 flex flex-col justify-start
+}
+
+.cardSection .sectionTitle {
+    @apply text-primary
+}
+
+.card__formWrapper {
+    @apply w-full min-h-[70%] flex flex-col justify-center items-start
+}
+
+.card__form {
+    @apply w-full flex flex-col gap-y-4
+}
+
+.card__formGroup {
+    @apply w-full flex flex-col gap-y-2
+}
+
+.card__input {
+    @apply bg-transparent border-2 w-full border-primary/20 rounded-lg px-4 py-2 min-h-[46px]
+}
+
+.card__cvvSection {
+    @apply grid grid-cols-3 gap-2
+}
+
+.card__checkoutButton {
+    @apply mt-8 px-6 h-12 text-center w-full rounded-lg font-bold bg-primary text-white
+}

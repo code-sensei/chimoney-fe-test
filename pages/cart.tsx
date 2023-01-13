@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styles from "/styles/Cart.module.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -41,12 +42,12 @@ const Cart = () => {
     }
     return (
         <Layout>
-            <div className="grid grid-cols-3 gap-4 justify-start items-start h-screen">
-                <div className="col-span-2 bg-primary text-white h-full overflow-y-scroll p-24">
-                    <h1 className="font-bold text-white text-3xl">
+            <div className={styles.cart}>
+                <div className={styles.cart__itemsSection}>
+                    <h1 className={styles.sectionTitle}>
                         Shopping Cart
                     </h1>
-                    <div className="mt-16 max-h-[70%] overflow-y-auto">
+                    <div className={styles.cartItem}>
                         { cartItems.map((item, index) => {
                             // console.log('Item', item);
                             return (
@@ -75,57 +76,61 @@ const Cart = () => {
                         })}
                     </div>
                     <div className="mt-12">
-                        <div className="grid grid-cols-6 justify-center items-center">
-                            <div className="col-span-1"></div>
+                        <div className={styles.cart__subTotalSection}>
+                            <div className={styles.cart__subTotalSectionDivider}></div>
                             <div className="col-span-2">
                                 <button 
-                                    className="text-thin bg-white text-primary rounded-lg"
+                                    className={styles.cart__continueShoppingButton}
                                     onClick={() => router.push('/')}
                                 >
                                     Continue Shopping
                                 </button>
                             </div>
+                            <div className={styles.cart__subTotalSectionDivider2}></div>
                             <div className="col-span-1">
-                                <p className="font-bold text-xl">SubTotal:</p>
+                                <p className={styles.boldText}>SubTotal:</p>
                             </div>
                             <div className="col-span-2 text-end pr-12">
-                                <p className="font-bold text-xl">{ cartTotal } USD</p>
+                                <p className={styles.boldText}>{ cartTotal } USD</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="col-span-1 h-full py-24 px-8">
-                    <h1 className="font-bold text-primary text-3xl">
+                <div className={styles.cardSection}>
+                    <h1 className={styles.sectionTitle}>
                         Card Details
                     </h1>
-                    <div className="w-full min-h-[70%] flex flex-col justify-center items-start">
+                    <div className={styles.card__formWrapper}>
                         <form 
-                            className="w-full flex flex-col gap-y-4"
+                            className={styles.card__form}
+                            onSubmit={(event) => {
+                                event.preventDefault();
+                            }}
                         >
-                            <div className="w-full flex flex-col gap-y-2">
+                            <div className={styles.card__formGroup}>
                                 <label htmlFor="card-name">Name on Card</label>
                                 <input 
                                     id="card-name"
-                                    className="bg-transparent border-2 w-full border-primary rounded-lg px-4 py-2 min-h-12"
+                                    className={styles.card__input}
                                     placeholder="John Doe"
                                 />
                             </div>
-                            <div className="w-full flex flex-col gap-y-2">
+                            <div className={styles.card__formGroup}>
                                 <label htmlFor="card-number">Card Number</label>
                                 <input 
                                     id="card-number"
-                                    className="bg-transparent border-2 w-full border-primary rounded-lg px-4 py-2 min-h-12"
+                                    className={styles.card__input}
                                     placeholder="**** **** **** **** ****"
                                 />
                             </div>
-                            <div className="grid grid-cols-3 gap-2">
+                            <div className={styles.card__cvvSection}>
                                 <div className="col-span-1">
-                                    <div className="w-full flex flex-col gap-y-2">
-                                        <label htmlFor="valid-date">Valid Date</label>
+                                    <div className={styles.card__formGroup}>
+                                        <label htmlFor="valid-date">Exp</label>
                                         <select 
                                             id="valid-date"
                                             defaultValue={'MM'}
-                                            className="bg-transparent border-2 w-full border-primary rounded-lg px-4 py-2 min-h-12"
+                                            className={styles.card__input}
                                         >
                                             <option value="MM">MM</option>
                                             {[1,2,3,4,5,6,7,8,9,10,11,12].map((value, index) => {
@@ -137,12 +142,12 @@ const Cart = () => {
                                     </div>
                                 </div>
                                 <div className="col-span-1">
-                                    <div className="w-full flex flex-col gap-y-2">
-                                        <label htmlFor="valid-year" className="text-white">Valid Year</label>
+                                    <div className={styles.card__formGroup}>
+                                        <label htmlFor="valid-year" className="text-white">Exp</label>
                                         <select 
                                             id="valid-year"
                                             defaultValue={'YYYY'}
-                                            className="bg-transparent border-2 w-full border-primary rounded-lg px-4 py-2 min-h-12"
+                                            className={styles.card__input}
                                         >
                                             <option value="YYYY">YYYY</option>
                                             {[2023,2024,2025].map((value, index) => {
@@ -154,11 +159,11 @@ const Cart = () => {
                                     </div>
                                 </div>
                                 <div className="col-span-1">
-                                    <div className="w-full flex flex-col gap-y-2">
+                                    <div className={styles.card__formGroup}>
                                         <label htmlFor="cvv">CVV</label>
                                         <input 
                                             id="cvv"
-                                            className="bg-transparent border-2 w-full border-primary rounded-lg px-4 py-2 min-h-12"
+                                            className={styles.card__input}
                                             placeholder="***"
                                         />
                                     </div>
@@ -166,7 +171,7 @@ const Cart = () => {
                             </div>
                             <button 
                                 type="submit"
-                                className="mt-8 px-6 h-12 text-center w-full rounded-lg font-bold bg-primary text-white"
+                                className={styles.card__checkoutButton}
                             >Checkout</button>
                         </form>
                     </div>

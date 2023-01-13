@@ -1,5 +1,5 @@
 .show {
-    @apply inline-block wrapper
+    @apply inline-block animate-pulse mb-4
 }
 
 .wrapper {

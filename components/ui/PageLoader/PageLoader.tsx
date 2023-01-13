@@ -8,16 +8,16 @@ const PageLoader = ({...props}) => {
     } = props;
 
     return (
-        <div className={show ? styles.show : 'wrapper'}>
+        <div className={styles.wrapper}>
             <Image
                 height={80}
                 width={200}
                 alt={'Chimoney logo'}
                 src={'images/chimoney-logo.svg'}
-                className="animate-pulse mb-4"
+                className={show ? styles.show : ''}
                 loading={'eager'}
             />
-            {/* <p className="text-xl text-primary font-semibold">Loading...</p> */}
+            <p className="text-primary font-semibold">Loading App...</p>
         </div>
     )
 }
