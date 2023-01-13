@@ -37,3 +37,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
     3. Remove cart item
     4. Show toast on item update
     5. Update cart subTotal on item update
+
+### Ways To Improve App
+1. Better color palette and layout to inprove User Experience
+2. App can be made into a PWA and implementing a Cache to allow the app to the accessible in offline or poor network scenarios 
+3. Use of skeleton loaders on Cart page
