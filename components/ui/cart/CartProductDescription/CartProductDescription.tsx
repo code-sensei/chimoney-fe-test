@@ -12,13 +12,16 @@ function CartProductDescription({...props}) {
     const [ quantity, setQuantity ] = useState<number>(product.quantity);
     const quantityInput = useRef<any>();
 
-    const handleQtyChange = (event: any) => {
+    const handleQtyChange = (changeType: any) => {
         if (onQtyChanged) {
             // console.log('Ev', event);
-            event.preventDefault();
+            // event.preventDefault();
             onQtyChanged({
                 quantity: Number(quantityInput.current.value),
-                id: product.id
+                id: product.id,
+                newPrice: Number(quantityInput.current.value) * product.price,
+                priceChange: product.price,
+                changeType
             });
         } else {
             console.log('Rubbish');
@@ -37,9 +40,10 @@ function CartProductDescription({...props}) {
                         <MinusIcon 
                             className="hover:cursor-pointer"
                             onClick={async (event: any) => {
+                                event.preventDefault()
                                 if (quantity > 0) {
                                     await setQuantity(quantity - 1);
-                                    handleQtyChange(event);
+                                    handleQtyChange('negative');
                                 }
                             }}
                         />
@@ -53,16 +57,21 @@ function CartProductDescription({...props}) {
                         <PlusIcon
                             className="hover:cursor-pointer"
                             onClick={async (event: any) => {
+                                event.preventDefault()
                                 if (quantity < 99) {
                                     await setQuantity(quantity + 1);
-                                    handleQtyChange(event);
+                                    handleQtyChange('positive');
                                 }
                             }}
                         />
                     </div>
                 </div>
                 <div className={styles.cart__price}>
-                    <p className={styles.cart__productPrice}>{ product.currency } { (product.price * quantity).toFixed(2) }</p>
+                    <p 
+                        className={styles.cart__productPrice}
+                    >
+                        { (product.price * quantity).toFixed(2) } { product.currency } 
+                    </p>
                 </div>
             </div>
         </>

@@ -1,27 +1,28 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { CartState, setCart } from "../app/store/slices/cartSlice";
+import { useSelector } from "react-redux";
 import { RootState } from "../app/store/store";
 import { CartItem } from "../components/ui";
 
 function Cart() {
     const products = useSelector((state: RootState) => state.products);
     const cart = useSelector((state: RootState) => state.cart);
-    const dispatch = useDispatch();
+    const router = useRouter();
     const [ cartItems, setCartItems ] = useState<any[]>([]);
+    const [ cartTotal, setCartTotal ] = useState<any>(0);
 
     useEffect(() => {
-        // initCartItems();
         getCartItems();
+        getCartTotal();
     }, [])
 
-    const initCartItems = () => {
-        let cartItems: CartState[] = products.slice(0,3).map((item) => ({
-            id: item.id,
-            quantity: 1
-        }))
-        dispatch(setCart(cartItems))
+    const getCartTotal = () => {
+        let total = 0;
+        cartItems.forEach((item: any) => {
+            total += item.price * item.quantity
+        });
+        setCartTotal(total.toFixed(2));
     }
 
     const getCartItems = async () => {
@@ -51,22 +52,40 @@ function Cart() {
                                     <CartItem 
                                         item={item} 
                                         index={index} 
+                                        onPriceChange={(data: {
+                                            priceChange: number,
+                                            changeType: string
+                                        }) => {
+                                            console.log('Price changed', data);
+                                            let total = Number(cartTotal)
+                                            if (data.changeType) {
+                                                data.changeType === 'positive' ?
+                                                total += data.priceChange :
+                                                data.changeType === 'negative' ?
+                                                total -= data.priceChange :
+                                                getCartTotal()
+                                            }
+                                            setCartTotal(total)
+                                        }}
                                     />
                                 </div>
                             )
                         })}
                     </div>
                     <div className="mt-12">
-                        <div className="grid grid-cols-5">
+                        <div className="grid grid-cols-6">
                             <div className="col-span-1"></div>
                             <div className="col-span-2">
-                                <p className="thin">Continue Shopping</p>
+                                <p 
+                                    className="thin"
+                                    onClick={() => router.push('/')}
+                                >Continue Shopping</p>
                             </div>
                             <div className="col-span-1">
                                 <p className="font-bold text-xl">SubTotal:</p>
                             </div>
-                            <div className="col-span-1">
-                                <p className="font-bold text-xl">$20,000</p>
+                            <div className="col-span-2 text-end pr-12">
+                                <p className="font-bold text-xl">{ cartTotal } USD</p>
                             </div>
                         </div>
                     </div>

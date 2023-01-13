@@ -8,6 +8,7 @@ import { initiateProducts } from '../app/store/slices/productsSlice'
 import { RootState } from '../app/store/store'
 import { useRouter } from 'next/router'
 import { CartState, setCart } from '../app/store/slices/cartSlice'
+import { getProductsFromAPI } from '../app/functions/products'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +17,15 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    getProductsFromAPI();
+    getProductsFromAPI()
+      .then(response => {
+        let products = response.data.benefitsList.filter((item: any) => item.type === "Products");
+        console.log('Products', products);
+        dispatch(initiateProducts(products));
+        initCartItems(products);
+        router.push('/cart');
+      })
+      .catch(err => console.error(err));
   }, [])
 
   const initCartItems = (products: any) => {
@@ -27,32 +36,6 @@ export default function Home() {
       dispatch(setCart(cartItems))
   }
 
-  const getProductsFromAPI = () => {
-    const headers = new Headers();
-    headers.append('accept', 'application/json');
-    headers.append('X-API-KEY', String(process.env.NEXT_PUBLIC_CHIMONEY_API_KEY))
-    // const options = {
-    //   method: 'GET',
-    //   headers: {
-    //     accept: 'application/json',
-    //     'X-API-KEY': process.env.NEXT_PUBLIC_CHIMONEY_API_KEY?.toString()
-    //   }
-    // };
-    
-    fetch('https://api.chimoney.io/v0.2/info/assets', {
-      method: 'GET',
-      headers: headers
-    })
-      .then(response => response.json())
-      .then(response => {
-        let products = response.data.benefitsList.filter((item: any) => item.type === "Products");
-        console.log('Products', products);
-        dispatch(initiateProducts(products));
-        initCartItems(products);
-        router.push('/cart');
-      })
-      .catch(err => console.error(err));
-  }
   return (
     <>
       
