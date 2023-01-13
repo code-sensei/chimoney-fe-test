@@ -16,7 +16,6 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Available Routes
-1. /
-    1. Loads the application and does the following
-    2. Get list of products from the Chimoney API
-    3. Initializes product State with Redux
+1. / - Loads the application and does the following
+    1. Get list of products from the Chimoney API
+    2. Initializes product State with Redux
