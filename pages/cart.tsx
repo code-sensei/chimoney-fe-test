@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store/store";
 import { CartItem } from "@components/ui";
+import Layout from "@components/layouts/DefaultLayout";
 
 const Cart = () => {
     const products = useSelector((state: RootState) => state.products);
@@ -39,7 +40,7 @@ const Cart = () => {
         setCartItems(cartItems.filter((item) => !!item));
     }
     return (
-        <>
+        <Layout>
             <div className="grid grid-cols-3 gap-4 justify-start items-start h-screen">
                 <div className="col-span-2 bg-primary text-white h-full overflow-y-scroll p-24">
                     <h1 className="font-bold text-white text-3xl">
@@ -171,7 +172,7 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </Layout>
     )
 }
 

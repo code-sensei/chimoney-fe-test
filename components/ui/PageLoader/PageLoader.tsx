@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import styles from './PageLoader.module.css';
-import Logo from '@public/images/chimoney-logo.svg'
 
 const PageLoader = ({...props}) => {
 
@@ -9,7 +8,7 @@ const PageLoader = ({...props}) => {
     } = props;
 
     return (
-        <div className={show ? styles.show : ''}>
+        <div className={show ? styles.show : 'wrapper'}>
             <Image
                 height={80}
                 width={200}

@@ -5,7 +5,3 @@
 .wrapper {
     @apply h-screen w-screen flex flex-col justify-center items-center
 }
-
-.progress-bar {
-    @apply h-[200px] w-[200px]
-}

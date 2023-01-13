@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { CartState, setCart } from '../app/store/slices/cartSlice'
 import { getProductsFromAPI } from '../app/functions/products'
 import { PageLoader } from '@components/ui'
+import Layout from '@components/layouts/DefaultLayout'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,11 +45,11 @@ const Home = () => {
   }
 
   return (
-    <>
+    <Layout>
       <PageLoader
         show={isLoading}
       ></PageLoader>
-    </>
+    </Layout>
   )
 }
 
