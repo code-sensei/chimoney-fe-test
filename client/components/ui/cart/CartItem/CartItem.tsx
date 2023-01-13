@@ -1,9 +1,9 @@
-import ModalContainer from "@components/ui/ModalContainer/ModalContainer";
+import ModalContainer from "../../ModalContainer/ModalContainer";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeItem, updateItemQuantity } from "../../../../app/store/slices/cartSlice";
 import { successToast } from "../../../../app/toast/toast";
-import { CloseIcon } from "@icons/index";
+import { CloseIcon } from "../../../icons/index";
 import CartProductDescription from "../CartProductDescription/CartProductDescription";
 import CartProductImage from "../CartProductImage/CartProductImage";
 import styles from "./CartItem.module.css"
@@ -64,7 +64,7 @@ const CartItem = ({...props}) => {
                                 priceChange: number,
                                 changeType: string
                             }) => {
-                                console.log('New Qty', data);
+                                // console.log('New Qty', data);
                                 await dispatch(updateItemQuantity({
                                     ...data,
                                     index

@@ -1,6 +1,6 @@
 import React from 'react';
-import AnimationLoader from '@components/ui/AnimationLoader/AnimationLoader';
-import CloseIcon from '@components/icons/Close';
+import AnimationLoader from '../AnimationLoader/AnimationLoader';
+import CloseIcon from '../../icons/Close';
 import cn from 'clsx';
 import s from './ModalContainer.module.css';
 

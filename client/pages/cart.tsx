@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store/store";
-import { CartItem } from "@components/ui";
-import Layout from "@components/layouts/DefaultLayout";
+import { CartItem } from "../components/ui";
+import Layout from "../components/layouts/DefaultLayout";
 
 const Cart = () => {
     const products = useSelector((state: RootState) => state.products);

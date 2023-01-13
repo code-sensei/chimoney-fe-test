@@ -15,10 +15,10 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@components/*": ["./components/*"],
+      "@components/*": ["./client/components/*"],
       "@public/*": ["./public/*"],
-      "@store/*": ["./app/store/*"],
-      "@icons/*": ["./components/icons/*"],
+      "@store/*": ["./client/app/store/*"],
+      "@icons/*": ["./client/components/icons/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

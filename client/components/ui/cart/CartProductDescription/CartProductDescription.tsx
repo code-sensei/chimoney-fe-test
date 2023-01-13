@@ -25,7 +25,7 @@ const CartProductDescription = ({...props}) => {
                 changeType
             });
         } else {
-            console.log('Rubbish');
+            // console.log('Rubbish');
         }
     }
 
