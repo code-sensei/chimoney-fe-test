@@ -1,6 +1,6 @@
 import styles from "./CartProductImage.module.css"
 
-function CartProductImage({...props}) {
+const CartProductImage = ({...props}) => {
 
     const {
         url = 'https://picsum.photos/200'

@@ -1,0 +1,28 @@
+.root:not(.show) {
+    @apply bg-[#505050] bg-opacity-[.3] hidden;
+  }
+  
+  .root.show {
+    @apply w-screen h-screen fixed top-0 left-0 flex flex-col justify-center items-center z-[9999] bg-black/20;
+  }
+  
+  .content {
+    @apply animate-fade-in max-w-[80%] mx-auto md:max-w-md flex flex-col gap-2 bg-white rounded-lg pt-12 pb-4 px-8 ;
+  }
+  
+  .message {
+    @apply w-full text-center max-w-prose leading-7 text-gray-600 font-bold text-xl;
+  }
+  
+  .icon {
+    @apply w-full text-center max-w-prose mb-2 leading-7 inline;
+  }
+  
+  .subMessage {
+    @apply w-full text-center max-w-prose text-gray-600 text-[14px];
+  }
+  
+  .closeIcon {
+    @apply flex flex-col justify-center items-center h-8 w-8 rounded-md bg-danger text-white absolute top-[70px] right-[50px] cursor-pointer;
+  }
+  

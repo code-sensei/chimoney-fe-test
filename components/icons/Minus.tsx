@@ -1,4 +1,4 @@
-function MinusIcon({...props}) {
+const MinusIcon = ({...props}) => {
 
     const {
         className,

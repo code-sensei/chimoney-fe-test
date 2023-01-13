@@ -12,7 +12,7 @@ import { getProductsFromAPI } from '../app/functions/products'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+const Home = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -42,3 +42,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home;

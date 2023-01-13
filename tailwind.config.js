@@ -18,6 +18,19 @@ module.exports = {
       },
       fontWeight: {
         "800": ["800"]
+      },
+      animation: {
+        'fade-in': 'fade-in .3s linear',
+      },
+      keyframes: {
+        'fade-in': {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
       }
     },
   },

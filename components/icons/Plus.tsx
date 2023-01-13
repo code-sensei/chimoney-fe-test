@@ -1,4 +1,4 @@
-function PlusIcon({...props}) {
+const PlusIcon = ({...props}) => {
 
     const {
         className

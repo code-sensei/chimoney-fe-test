@@ -2,11 +2,12 @@ import { useState, useRef } from "react";
 import { MinusIcon, PlusIcon } from "../../../icons";
 import styles from "./CartProductDescription.module.css"
 
-function CartProductDescription({...props}) {
+const CartProductDescription = ({...props}) => {
 
     const {
         product,
-        onQtyChanged
+        onQtyChanged,
+        shouldDelete
     } = props;
 
     const [ quantity, setQuantity ] = useState<number>(product.quantity);
@@ -27,6 +28,13 @@ function CartProductDescription({...props}) {
             console.log('Rubbish');
         }
     }
+
+    // const handleShouldDeleteItem = () => {
+    //     console.log('should delete');
+    //     if (shouldDelete) {
+    //         shouldDelete(true);
+    //     }
+    // }
 
     return (
         <>

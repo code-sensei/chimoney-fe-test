@@ -1,4 +1,4 @@
-function CloseIcon({...props}) {
+const CloseIcon = ({...props}) => {
 
     const {
         className

@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store/store";
-import { CartItem } from "../components/ui";
+import { CartItem } from "@components/ui";
 
-function Cart() {
+const Cart = () => {
     const products = useSelector((state: RootState) => state.products);
     const cart = useSelector((state: RootState) => state.cart);
     const router = useRouter();
@@ -15,7 +15,7 @@ function Cart() {
     useEffect(() => {
         getCartItems();
         getCartTotal();
-    }, [])
+    }, [cartItems])
 
     const getCartTotal = () => {
         let total = 0;
@@ -47,6 +47,7 @@ function Cart() {
                     </h1>
                     <div className="mt-16 max-h-[70%] overflow-y-auto">
                         { cartItems.map((item, index) => {
+                            // console.log('Item', item);
                             return (
                                 <div key={`cartItem-${item.id}`}>
                                     <CartItem 
