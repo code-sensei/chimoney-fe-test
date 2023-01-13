@@ -74,13 +74,15 @@ const Cart = () => {
                         })}
                     </div>
                     <div className="mt-12">
-                        <div className="grid grid-cols-6">
+                        <div className="grid grid-cols-6 justify-center items-center">
                             <div className="col-span-1"></div>
                             <div className="col-span-2">
-                                <p 
-                                    className="thin"
+                                <button 
+                                    className="text-thin bg-white text-primary rounded-lg"
                                     onClick={() => router.push('/')}
-                                >Continue Shopping</p>
+                                >
+                                    Continue Shopping
+                                </button>
                             </div>
                             <div className="col-span-1">
                                 <p className="font-bold text-xl">SubTotal:</p>

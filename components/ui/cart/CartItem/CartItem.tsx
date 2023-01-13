@@ -92,7 +92,14 @@ const CartItem = ({...props}) => {
                     </button>
                     <button
                         className="w-1/2 sm:w-1/2 rounded-lg h-12 bg-transparent text-primary font-semibold"
-                        onClick={() => setShowDeleteConfirmationModal(false)}
+                        onClick={(event) => {
+                            event.preventDefault();
+                            handlePriceChanged({
+                                priceChange: item.price,
+                                changeType: 'negative'
+                            })
+                            setShowDeleteConfirmationModal(false);
+                        }}
                     >
                         No, go back
                     </button>
